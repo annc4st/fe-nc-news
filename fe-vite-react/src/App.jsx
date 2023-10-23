@@ -5,7 +5,11 @@ import SingleArticlePage from './SingleArticlePage';
 
 
 const Header = () => {
-  return <h1 className='title'>See Latest NC News </h1>;
+  return (
+    <div className='header'>
+  <h1 className='title'>Latest NC News </h1>
+  </div>
+  )
 };
 
 function App() {
