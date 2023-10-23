@@ -1,43 +1,31 @@
-import { useState, useEffect} from 'react'
-import './App.css'
-import axios from "axios";
- 
+import { useState} from 'react'
+import {Route, Routes} from "react-router-dom";
 import NewsList from './NewsList';
+import SingleArticlePage from './SingleArticlePage';
 
 
 const Header = () => {
   return <h1 className='title'>See Latest NC News </h1>;
 };
 
-
-
-
 function App() {
-  const [items, setItems] = useState([])
-  // const [active, setActive] = useState();
-  // const [topic, setTopic] = useState("coding");
-  // const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    axios.get('https://nc-news-proj.onrender.com/api/articles')
-    .then ((response) => {
-      setItems(response.data.articles);
-    })
-    .catch((error) => {
-      console.log(error)
-  });
-}, []);
-
+  const [articles, setArticles] = useState([]);
 
   return (
-    <>
+
       <div className='App'>
         <Header /> 
+        {/* < Nav /> */}
         {/* <Topics active={active} setActive={setActive} setTopic={setTopic}/>  */}
-        <NewsList items = {items}/>
+        <Routes>
+        <Route path = "/articles" element = {<NewsList articles= {articles}/>} />
+        <Route path = "/article/:article_id" element = {<SingleArticlePage />}  />
+        </Routes>
+
+      
       </div>
         
-    </>
+
   )
 }
 
