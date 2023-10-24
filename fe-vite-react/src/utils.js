@@ -4,8 +4,8 @@ const newsApi = axios.create ({
     baseURL : "https://nc-news-proj.onrender.com/api",
 })
 
-export const getArticles = () => {
-    return newsApi.get("/articles")
+export const getArticles = (topic) => {
+    return newsApi.get(topic ? '/articles/?topic=' + topic : '/articles')
     .then((response) => {
         return response.data.articles;
     })
@@ -25,7 +25,26 @@ export const getArticleComments = (article_id) => {
     })
 }
 
+export const getTopics = () => {
+    return newsApi.get('/topics')
+    .then((response) => {
+        return response.data.topics;
+    })
+}
+
+// export const getArticlesOnTopic = (topic) => {
+//     return newsApi.get('/articles', {
+//         params: { topic: topic}
+//     },
+//     )
+//     .then((response) => {
+//         return response.data.articles
+//     })
+// }
+
+
 export const formatCommentDate = (date) => {
     const formattedDate = date.replace('T', ' ').replace('Z', ' ').replace('.000', '')
     return formattedDate;
 }
+

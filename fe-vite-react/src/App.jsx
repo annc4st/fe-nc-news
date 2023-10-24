@@ -1,7 +1,8 @@
 import { useState} from 'react'
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, Link} from "react-router-dom";
 import NewsList from './NewsList';
 import SingleArticlePage from './SingleArticlePage';
+
 
 
 const Header = () => {
@@ -13,22 +14,26 @@ const Header = () => {
 };
 
 function App() {
-  const [articles, setArticles] = useState([]);
 
   return (
 
-      <div className='App'>
+      <>
         <Header /> 
-        {/* < Nav /> */}
-        {/* <Topics active={active} setActive={setActive} setTopic={setTopic}/>  */}
+          <nav>
+          <Link to ="/">Home</Link> | <Link to ="/articles">All News</Link> |
+            <Link to ="/articles/topics/football"> Football </Link> |
+             <Link to ="/articles/topics/coding">Coding </Link> 
+           | <Link to ="/articles/topics/cooking">Cooking</Link> 
+        </nav>
+   
         <Routes>
-        <Route path = "/articles" element = {<NewsList articles= {articles}/>} />
-        <Route path = "/article/:article_id" element = {<SingleArticlePage />}  />
+        <Route path = "/" element = {<NewsList />} />
+        <Route path = "/articles" element = {<NewsList />} />
+        <Route path = "/articles/topics/:topic" element = {<NewsList />} />
+        <Route path = "/article/:article_id" element = {<SingleArticlePage/>}  />
+         
         </Routes>
-
-      
-      </div>
-        
+      </>
 
   )
 }

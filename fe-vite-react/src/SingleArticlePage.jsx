@@ -4,7 +4,6 @@ import { getSingleArticle, getArticleComments, formatCommentDate } from "./utils
 
 const SingleArticlePage = () => {
   const { article_id } = useParams();
-  console.log("lskdfj", article_id);
   const [comments, setComments] = useState([]);
   const [singleArticle, setSingleArticle] = useState({});
 
@@ -14,15 +13,12 @@ const SingleArticlePage = () => {
         setSingleArticle(article);
       })
       .catch((error) => {
-        console.log("error", error);
       });
     getArticleComments(article_id)
       .then((comments) => {
-        console.log("cometns", comments);
         setComments(comments);
       })
       .catch((error) => {
-        console.log("error", error);
       });
   }, [article_id]);
 
