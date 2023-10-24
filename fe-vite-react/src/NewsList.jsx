@@ -52,5 +52,3 @@ const NewsList = () => {
 }
 
 export default NewsList;
-
-// className={selectedTopic === topic.slug ?  "active" : "not-active"}

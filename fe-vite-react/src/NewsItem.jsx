@@ -11,6 +11,7 @@ const NewsItem =({article}) => {
                     <h2>{article.title}</h2>
                     <p> author {article.author}</p>
                     <p>topic {article.topic}</p>
+                    <p>Votes: {article.votes}</p>
                 </div>
             </Link>
         </div>

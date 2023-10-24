@@ -2,6 +2,7 @@ import { useState} from 'react'
 import {Route, Routes, Link} from "react-router-dom";
 import NewsList from './NewsList';
 import SingleArticlePage from './SingleArticlePage';
+import Nav from './Nav';
 
 
 
@@ -19,12 +20,8 @@ function App() {
 
       <>
         <Header /> 
-          <nav>
-          <Link to ="/">Home</Link> | <Link to ="/articles">All News</Link> |
-            <Link to ="/articles/topics/football"> Football </Link> |
-             <Link to ="/articles/topics/coding">Coding </Link> 
-           | <Link to ="/articles/topics/cooking">Cooking</Link> 
-        </nav>
+        <Nav />
+         
    
         <Routes>
         <Route path = "/" element = {<NewsList />} />

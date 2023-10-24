@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleArticle, getArticleComments, formatCommentDate } from "./utils";
+import { Voter } from "./Voter";
+import Picker from 'emoji-picker-react';
 
 const SingleArticlePage = () => {
   const { article_id } = useParams();
   const [comments, setComments] = useState([]);
-  const [singleArticle, setSingleArticle] = useState({});
+  const [singleArticle, setSingleArticle] = useState();
 
   useEffect(() => {
     getSingleArticle(article_id)
@@ -29,6 +31,10 @@ const SingleArticlePage = () => {
       </div>
 
       <p>votes: {singleArticle.votes}</p>
+      <Voter votes = {singleArticle.votes} update={update}/>
+
+
+
       <div className="single-article-img">
         <img src={singleArticle.article_img_url} alt="picture of" />
       </div>
