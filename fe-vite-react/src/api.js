@@ -48,3 +48,9 @@ export const formatCommentDate = (date) => {
     return formattedDate;
 }
 
+
+export const updateVotes = async (article_id, value) => {
+    const response = await newsApi.patch(`/articles/${article_id}`, { inc_votes: value });
+    return response.data.article;
+    
+  }

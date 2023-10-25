@@ -3,7 +3,7 @@ import {Route, Routes, Link} from "react-router-dom";
 const NewsItem =({article}) => {
     return (
         <div className = "news-item">
-            <Link to={`/article/${article.article_id}`}>
+            <Link to={`/articles/article/${article.article_id}`}>
                 
                 <img src ={article.article_img_url} alt = "picture of" />
             

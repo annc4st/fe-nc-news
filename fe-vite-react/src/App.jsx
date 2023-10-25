@@ -20,14 +20,12 @@ function App() {
 
       <>
         <Header /> 
-        <Nav />
-         
-   
+        <Nav />   
         <Routes>
         <Route path = "/" element = {<NewsList />} />
         <Route path = "/articles" element = {<NewsList />} />
         <Route path = "/articles/topics/:topic" element = {<NewsList />} />
-        <Route path = "/article/:article_id" element = {<SingleArticlePage/>}  />
+        <Route path = "/articles/article/:article_id" element = {<SingleArticlePage/>}  />
          
         </Routes>
       </>
