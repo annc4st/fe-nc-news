@@ -4,6 +4,7 @@ import { getSingleArticle, getArticleComments, formatCommentDate, updateVotes} f
 
 import { Voter } from "./Voter";
 import Picker from 'emoji-picker-react';
+import './SingleArticle.css'
 
 const SingleArticlePage = () => {
   const { article_id } = useParams();
@@ -69,6 +70,19 @@ const SingleArticlePage = () => {
             <p>votes: {comment.votes}</p>
           </div>
         ))}
+      </div>
+
+      <div className="post-comment">
+        <h3>Post a Comment</h3>
+        <form>
+        <label htmlFor="post-comment-text">Your comment goes here:</label>
+        <textarea id="post-comment-text" type="text" rows="5"></textarea>
+        <button disabled type="submit">Post Comment</button>
+
+        </form>
+        
+    
+
       </div>
     </section>
   );
