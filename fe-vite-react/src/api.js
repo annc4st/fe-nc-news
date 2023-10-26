@@ -54,3 +54,22 @@ export const updateVotes = async (article_id, value) => {
     return response.data.article;
     
   }
+
+export const getUsers = () => {
+    return newsApi.get('/users')
+    .then((response) => {
+        return response.data.users
+    })
+}
+
+export const getSingleUser = (username) => {
+    return newsApi.get(`/users/${username}`)
+    .then((response) => {
+        console.log(response.data.user)
+        return response.data.user
+    })
+    .catch((error) => {
+        console.error('Error fetching user:', error);
+        throw error;
+      });
+}

@@ -39,7 +39,8 @@ const SingleArticlePage = () => {
       </div>
 
       {/* <p>votes: {singleArticle.votes}</p> */}
-      <Voter votes = {singleArticle.votes} article_id = {singleArticle.article_id}/>
+      <Voter votes = {singleArticle.votes}  article_id = {singleArticle.article_id}
+      setSingleArticle={setSingleArticle}/>
 
 
       <div className="single-article-img">

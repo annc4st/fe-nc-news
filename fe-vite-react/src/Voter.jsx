@@ -5,11 +5,16 @@ import { updateVotes } from './api';
 import * as api from "./api";
 
 
-export const Voter = ({article_id, votes}) => {
+export const Voter = ({article_id, votes, setSingleArticle}) => {
     const [votesDiff, setVotesDiff] = useState(0)
     const [error, setError] = useState(null);
 
     const handleVote  = (value) => {
+        setSingleArticle((currentArticle) => {
+           const clonedArticle = {...currentArticle}
+           clonedArticle.votes += value
+            return clonedArticle
+        })
         setVotesDiff((currentVotes) => {
             return currentVotes + value;
         });

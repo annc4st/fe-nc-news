@@ -5,7 +5,7 @@ const NewsItem =({article}) => {
         <div className = "news-item">
             <Link to={`/articles/article/${article.article_id}`}>
                 
-                <img src ={article.article_img_url} alt = "picture of" />
+                <img src ={article.article_img_url} alt = {`profile picture of ${article.titel}`}/>
             
                 <div className="article-content">
                     <h2>{article.title}</h2>
