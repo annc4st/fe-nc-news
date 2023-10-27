@@ -6,6 +6,7 @@ import Nav from './Nav';
 import Users from './Users';
 import Headline from './Headline';
 import SingleUser from './SingleUser';
+import {UserProvider} from './contexts/UserContext';
  
 
 const Header = () => {
@@ -24,6 +25,7 @@ function App() {
   return (
    
       <>
+      <UserProvider >
         <Header /> 
         <Headline />
         <Nav />   
@@ -37,6 +39,7 @@ function App() {
         <Route path = "/users/:username" element = {<SingleUser />} />
          
         </Routes>
+        </UserProvider>
       </>
   )
 }

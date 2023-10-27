@@ -65,11 +65,17 @@ export const getUsers = () => {
 export const getSingleUser = (username) => {
     return newsApi.get(`/users/${username}`)
     .then((response) => {
-        console.log(response.data.user)
         return response.data.user
     })
     .catch((error) => {
         console.error('Error fetching user:', error);
         throw error;
       });
+}
+
+export const postArticleComment = (newComment, article_id) => {
+    return newsApi.post(`/articles/${article_id}/comments`, newComment)
+    .then((response) => {
+        return response.data.comments
+    })
 }

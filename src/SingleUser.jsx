@@ -6,7 +6,7 @@ import {UserContext} from './contexts/UserContext';
 
 const SingleUser = () => {
     const {username} = useParams();
-    const [singleUser, setSingleUser] = useState();
+    // const [singleUser, setSingleUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const { user, setUser } = useContext(UserContext);
 
@@ -15,7 +15,7 @@ const SingleUser = () => {
         getSingleUser(username)
         .then((user) => {
             setIsLoading(false);
-            setSingleUser(user);
+            setUser(user);
         })
         .catch((error) => {
 
@@ -23,17 +23,17 @@ const SingleUser = () => {
     }, [username])
 
     const handleLogin =(e) => {
-        setUser({name: singleUser.name})
+        // setUser({name: singleUser.name, username: singleUser.username});
     }
 
     return (
         <section className="user-profile">
-            {singleUser ? ( 
+            {user? ( 
                 <>
-                    <img src={singleUser.avatar_url} 
-                    alt={`profile picture of ${singleUser.username}`}/>
-                    <p>{singleUser.username}</p>
-                    <p>{singleUser.name}</p>
+                    <img src={user.avatar_url} 
+                    alt={`profile picture of ${user.username}`}/>
+                    <p>{user.username}</p>
+                    <p>{user.name}</p>
                     <button onClick={handleLogin} disabled={user ? true : false}>
                                 {user ? 'Logged In' : 'Login'} 
                     </button>
