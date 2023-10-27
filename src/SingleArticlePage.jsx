@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import {
   getSingleArticle,
   getArticleComments,
   formatCommentDate,
-  updateVotes,
 } from "./api";
 
 import { Voter } from "./Voter";
+import { PostComment } from "./PostComment";
 import Picker from "emoji-picker-react";
 import "./SingleArticle.css";
+
 
 const SingleArticlePage = () => {
   const { article_id } = useParams();
   const [comments, setComments] = useState([]);
   const [singleArticle, setSingleArticle] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -65,7 +67,7 @@ const SingleArticlePage = () => {
 
         {comments.map((comment) => (
           <div className="single-comment" key={comment.comment_id}>
-            <p>{comment.author}</p>
+            <p>By: {comment.author}</p>
             <p>{comment.body}</p>
             <p>published: {formatCommentDate(comment.created_at)}</p>
             <p>votes: {comment.votes}</p>
@@ -73,16 +75,9 @@ const SingleArticlePage = () => {
         ))}
       </div>
 
-      <div className="post-comment">
-        <h3>Post a Comment</h3>
-        <form>
-          <label htmlFor="post-comment-text">Your comment goes here:</label>
-          <textarea id="post-comment-text" type="text" rows="5"></textarea>
-          <button disabled type="submit">
-            Post Comment
-          </button>
-        </form>
-      </div>
+     <PostComment 
+     article_id={singleArticle.article_id} 
+     setComments={setComments}/>
     </section>
   );
 };
