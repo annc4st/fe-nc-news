@@ -1,7 +1,7 @@
 .single-article {
     display: block;
-    /* padding: ;
-    margin: ; */
+    margin: 8px;
+    padding: 12px 24px;
 }
 
 .single-article h2 {
@@ -15,22 +15,23 @@
 
 }
 .comments-section{
+    /* display: block;
+    margin: 8px;
+    padding: 12px 36px; */
 
 }
 
  
 .single-comment {
-    display: block;
+
 
 }
 
 .post-comment {
-    border: 
-    display: flex;
+  
+    display: block;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 8px;
-    padding: 20px;
     margin: auto;
     text-align: center;
 }
@@ -47,7 +48,7 @@
 }
 .post-comment textarea {
     display: block;
-    width: 80%;
+    /* width: 80%; */
     margin-top: 20px;
     margin-bottom: 20px;
     background: rgb(236, 240, 240);

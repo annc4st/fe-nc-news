@@ -2,7 +2,7 @@ import NewsItem from './NewsItem';
 import { getArticles, getTopics} from './api.js';
 import React, { useEffect, useState } from "react";
 import {Link, Routes, Route, useParams} from 'react-router-dom';
- 
+import './newsList.css';
 
 const NewsList = () => {
     const [articles, setArticles] = useState([]);

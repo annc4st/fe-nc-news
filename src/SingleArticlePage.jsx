@@ -35,16 +35,14 @@ const SingleArticlePage = () => {
     <section className="single-article">
       {singleArticle ? ( 
         <>
-      <div className="single-article-title">
+      
         <h2>{singleArticle.title}</h2>
-      </div>
+   
       <Voter votes = {singleArticle.votes}  article_id = {singleArticle.article_id}
       setSingleArticle={setSingleArticle}/>
 
-
-      <div className="single-article-img">
         <img src={singleArticle.article_img_url} alt="picture of" />
-      </div>
+
 
       <div className="single-article-content">
         <p> By {singleArticle.author}</p>
@@ -63,7 +61,7 @@ const SingleArticlePage = () => {
         <h3>Comments</h3>
 
         {comments.map((comment) => (
-          <div className="comment-div" key={comment.comment_id}>
+          <div className="single-comment" key={comment.comment_id}>
             <p>{comment.author}</p>
             <p>{comment.body}</p>
             <p>published: {formatCommentDate(comment.created_at)}</p>
@@ -81,8 +79,6 @@ const SingleArticlePage = () => {
 
         </form>
         
-    
-
       </div>
     </section>
   );

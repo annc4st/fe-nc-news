@@ -4,12 +4,13 @@ import NewsList from './NewsList';
 import SingleArticlePage from './SingleArticlePage';
 import Nav from './Nav';
 import Users from './Users';
+import Headline from './Headline';
 import SingleUser from './SingleUser';
-
-
+ 
 
 const Header = () => {
   return (
+ 
     <div className='header'>
   <h1 className='title'>Latest NC News </h1>
   </div>
@@ -18,11 +19,15 @@ const Header = () => {
 
 function App() {
 
-  return (
+  const [user, setUser] = useState(null)
 
+  return (
+   
       <>
         <Header /> 
+        <Headline />
         <Nav />   
+
         <Routes>
         <Route path = "/" element = {<NewsList />} />
         <Route path = "/articles" element = {<NewsList />} />
@@ -33,7 +38,6 @@ function App() {
          
         </Routes>
       </>
-
   )
 }
 
