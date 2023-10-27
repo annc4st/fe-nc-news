@@ -1,0 +1,59 @@
+.single-article {
+    display: block;
+    margin: 8px;
+    padding: 12px 24px;
+}
+
+.single-article h2 {
+
+}
+
+.single-article img {
+
+}
+.single-article-content {
+
+}
+.comments-section{
+    /* display: block;
+    margin: 8px;
+    padding: 12px 36px; */
+
+}
+
+ 
+.single-comment {
+
+
+}
+
+.post-comment {
+  
+    display: block;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+}
+.post-comment h3{
+    
+}
+
+.post-comment form {
+    display: block;
+    margin: auto;
+}
+.post-comment label {
+    display: block;
+}
+.post-comment textarea {
+    display: block;
+    /* width: 80%; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: rgb(236, 240, 240);
+}
+.post-comment button {
+    background: rgba(90, 201, 49, 0.813);
+}
+
