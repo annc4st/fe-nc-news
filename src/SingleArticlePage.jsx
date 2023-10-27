@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getSingleArticle, getArticleComments, formatCommentDate, updateVotes} from "./api";
+import {
+  getSingleArticle,
+  getArticleComments,
+  formatCommentDate,
+  updateVotes,
+} from "./api";
 
 import { Voter } from "./Voter";
-import Picker from 'emoji-picker-react';
-import './SingleArticle.css'
+import Picker from "emoji-picker-react";
+import "./SingleArticle.css";
 
 const SingleArticlePage = () => {
   const { article_id } = useParams();
@@ -16,43 +21,41 @@ const SingleArticlePage = () => {
     setIsLoading(true);
     getSingleArticle(article_id)
       .then((article) => {
-        setIsLoading(false)
+        setIsLoading(false);
         setSingleArticle(article);
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
     getArticleComments(article_id)
       .then((comments) => {
         setComments(comments);
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   }, [article_id]);
 
-  if (isLoading) return <p className="loading-p">loading...</p>
+  if (isLoading) return <p className="loading-p">loading...</p>;
 
   return (
     <section className="single-article">
-      {singleArticle ? ( 
+      {singleArticle ? (
         <>
+          <h2>{singleArticle.title}</h2>
+          <p>topic {singleArticle.topic}</p>
       
-        <h2>{singleArticle.title}</h2>
-   
-      <Voter votes = {singleArticle.votes}  article_id = {singleArticle.article_id}
-      setSingleArticle={setSingleArticle}/>
+          <Voter
+            votes={singleArticle.votes}
+            article_id={singleArticle.article_id}
+            setSingleArticle={setSingleArticle}
+          />
 
-        <img src={singleArticle.article_img_url} alt="picture of" />
+          <img src={singleArticle.article_img_url} alt="picture of" />
 
-
-      <div className="single-article-content">
-        <p> By {singleArticle.author}</p>
-        <p>topic {singleArticle.topic}</p>
-        <div className="article-body">{singleArticle.body}</div>
-      </div>
-      </> 
+          <div className="single-article-content">
+            <p> By {singleArticle.author}</p>
+            <div className="article-body">{singleArticle.body}</div>
+          </div>
+        </>
       ) : (
         <p> Loading ... </p>
-
       )}
 
       {/* comments */}
@@ -73,12 +76,12 @@ const SingleArticlePage = () => {
       <div className="post-comment">
         <h3>Post a Comment</h3>
         <form>
-        <label htmlFor="post-comment-text">Your comment goes here:</label>
-        <textarea id="post-comment-text" type="text" rows="5"></textarea>
-        <button disabled type="submit">Post Comment</button>
-
+          <label htmlFor="post-comment-text">Your comment goes here:</label>
+          <textarea id="post-comment-text" type="text" rows="5"></textarea>
+          <button disabled type="submit">
+            Post Comment
+          </button>
         </form>
-        
       </div>
     </section>
   );

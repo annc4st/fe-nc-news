@@ -12,7 +12,17 @@
 
 }
 .single-article-content {
-
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.single-article-content p {
+    padding-top: 12px;
+    font-weight: bold;
+}
+.loading-p {
+    display: block;
+    margin: 8px;
+    padding: 12px 36px;
 }
 .comments-section{
     /* display: block;
