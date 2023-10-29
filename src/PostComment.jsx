@@ -12,12 +12,11 @@ export const PostComment = ({ article_id}) => {
   const [comments, setComments] = useState([]);
 
 
-
   const handlePostComment = (e) => {
     e.preventDefault();
     if (user && text.trim() !== "") {
         setIsSubmitting(true); // Start submitting
-      postArticleComment({body: text, username: user.username}, article_id)
+        postArticleComment({body: text, username: user.username}, article_id)
         .then((newComment) => {
             setComments((prevComments) => [...prevComments, newComment]);
 
@@ -53,7 +52,7 @@ export const PostComment = ({ article_id}) => {
          >  
         {isSubmitting ? 'Submitting...' : user ? 'Post Comment' : 'Login to Comment'}
         </button> 
-        {isLoggedIn === false && (
+        {(!user) && (
         <p>
           Please log in to post a comment <Link to="/users">Users</Link>
         </p> 

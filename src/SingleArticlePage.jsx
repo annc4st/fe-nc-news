@@ -8,7 +8,6 @@ import {
 import {UserContext} from './contexts/UserContext';
 import { Voter } from "./Voter";
 import { PostComment } from "./PostComment";
-import Picker from "emoji-picker-react";
 import "./SingleArticle.css";
 
 
@@ -17,11 +16,10 @@ const SingleArticlePage = () => {
   const [comments, setComments] = useState([]);
   const [singleArticle, setSingleArticle] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const {comment_id} = useParams();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [deletingCommentId, setDeletingCommentId] = useState(null);
   const { user, setUser } = useContext(UserContext);
  
-
 
   useEffect(() => {
     setIsLoading(true);
@@ -40,26 +38,35 @@ const SingleArticlePage = () => {
 
   // handle comment delete
 
+
   const handleDelComment = (comment_id) => {
-     
     if (user) {
       setIsDeleting(true);// Start deleting
-      console.log("comment_id", comment_id)
-      deleteComment(article_id, comment_id)
+      setDeletingCommentId(comment_id);
+      // Optimistically remove the comment from the list
+    setComments((prevComments) =>
+    prevComments.filter((comment) => comment.comment_id !== comment_id)
+  );
+      deleteComment(comment_id)
      
       .then((comments) => {
         setComments(comments); // return comments without deleted
         setIsDeleting(false);
+        setDeletingCommentId(null)
+        console.log("Comment deleted successfully");
       })
       .catch((error) => {
         console.log("Error :", error);
+        // If the request fails, revert the changes
+        setComments((prevComments) => [...prevComments]);
+        setIsDeleting(false);
+        setDeletingCommentId(null);
       });
     }
   }
 
   if (isLoading) return <p className="loading-p">loading...</p>;
-
-
+  if (isDeleting) return <p className="deleting-p">deleting...</p>
   return (
     <section className="single-article">
       {singleArticle ? (
@@ -72,8 +79,6 @@ const SingleArticlePage = () => {
 
           >{singleArticle.topic}</p>
       
-         
-
           <img src={singleArticle.article_img_url} alt="picture of" />
           <div className="voter-article">
           <Voter
@@ -93,31 +98,36 @@ const SingleArticlePage = () => {
       )}
 
       {/* comments */}
-
-    
       <div className="comments-section">
         <h3>Comments</h3>
 
         {comments.map((comment) => (
           <div className="single-comment" key={comment.comment_id}>
-            <p>{comment.author} wrote on {formatCommentDate(comment.created_at)}</p>
+            <p>{comment.author} posted on {formatCommentDate(comment.created_at)}</p>
+            <p>{comment.comment_id}</p>
             <p>{comment.body}</p>
             <p></p>
             <p>votes: {comment.votes}</p>
             {/* only comment author can delete the comment */}
             {user && user.username === comment.author && (
-            <button className="delete-comnt-btn" 
-            onClick={() => {handleDelComment(comment.comment_id)}}>
-              Delete this comment
-              </button>
+              <div>
+                {deletingCommentId === comment.comment_id ? (
+                  <p className="delete-cmnt">Deleting comment...</p>
+                ) : (
+                  <button
+                    className="delete-comnt-btn"
+                    onClick={() => handleDelComment(comment.comment_id)}
+                    disabled={deletingCommentId === comment.comment_id}
+                  >
+                    {isDeleting ? "Deleting comment" : " Delete this comment"}
+                    {/* Delete this comment */}
+                  </button>
+                )}
+              </div>
             )}
-            {isDeleting && isDeleting.commentId === comment.comment_id && (
-              <p className="delete-cmnt">Your comment has been deleted </p>
-            )}
-
-            
           </div>
         ))}
+        
       </div>
 
      <PostComment 

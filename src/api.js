@@ -8,7 +8,6 @@ export const getArticles = (topic, sortOption, sortOrder) => {
     const params = {
         sort_by: sortOption,
         order: sortOrder,
-
     };
     
     if (topic) {
@@ -21,7 +20,6 @@ export const getArticles = (topic, sortOption, sortOrder) => {
         return response.data.articles;
     })
 }
-
 
 
 export const getSingleArticle = (article_id) => {
@@ -82,11 +80,8 @@ export const postArticleComment = (newComment, article_id) => {
     })
 }
 
-export const deleteComment = (article_id, comment_id) => {
-    return newsApi.delete(`/articles/${article_id}/comments`, {
-        params: {comment_id},
-    }
-    )
+export const deleteComment = (comment_id) => {
+    return newsApi.delete(`/comments/${comment_id}`)
     .then((response) => {
         console.log(`Comment ${comment_id} has been deleted successfully`)
     })
