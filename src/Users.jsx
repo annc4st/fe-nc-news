@@ -1,11 +1,12 @@
 import {Route, Routes, Link} from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { getUsers } from "./api";
+import './users.css';
 
 const Users = () => {
     const [users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    // const [selectedUser, setSelectedUser] = useState('');
+ 
 
     useEffect(() => {
         setIsLoading(true);
@@ -16,14 +17,11 @@ const Users = () => {
 
     }, []);
 
-    // const handleChooseUser = (e) => {
-    //     setSelectedUser(e.target.value)
-    // }
 
     return (
         <>
-        <h3> Select Your User </h3>
-        <ul>
+        <h3> Select Your User To Login</h3>
+        <ul className="users-list">
             {users.map((user) =>{
                 return(
                     <li key={user.username}>

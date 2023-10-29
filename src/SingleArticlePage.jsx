@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import {
   getSingleArticle,
   getArticleComments,
-  formatCommentDate,
+  formatCommentDate, deleteComment,
 } from "./api";
-
+import {UserContext} from './contexts/UserContext';
 import { Voter } from "./Voter";
 import { PostComment } from "./PostComment";
 import Picker from "emoji-picker-react";
@@ -17,6 +17,10 @@ const SingleArticlePage = () => {
   const [comments, setComments] = useState([]);
   const [singleArticle, setSingleArticle] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const {comment_id} = useParams();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const { user, setUser } = useContext(UserContext);
+ 
 
 
   useEffect(() => {
@@ -34,22 +38,50 @@ const SingleArticlePage = () => {
       .catch((error) => {});
   }, [article_id]);
 
+  // handle comment delete
+
+  const handleDelComment = (comment_id) => {
+     
+    if (user) {
+      setIsDeleting(true);// Start deleting
+      console.log("comment_id", comment_id)
+      deleteComment(article_id, comment_id)
+     
+      .then((comments) => {
+        setComments(comments); // return comments without deleted
+        setIsDeleting(false);
+      })
+      .catch((error) => {
+        console.log("Error :", error);
+      });
+    }
+  }
+
   if (isLoading) return <p className="loading-p">loading...</p>;
+
 
   return (
     <section className="single-article">
       {singleArticle ? (
         <>
           <h2>{singleArticle.title}</h2>
-          <p>topic {singleArticle.topic}</p>
+          <p className=
+          {`topic-label 
+          ${singleArticle.topic === "cooking" ? "topic-label__cooking": singleArticle.topic === "football" ? "topic-label__football" 
+          : singleArticle.topic === "coding" ? "topic-label__coding" : ''}`}
+
+          >{singleArticle.topic}</p>
       
+         
+
+          <img src={singleArticle.article_img_url} alt="picture of" />
+          <div className="voter-article">
           <Voter
             votes={singleArticle.votes}
             article_id={singleArticle.article_id}
             setSingleArticle={setSingleArticle}
           />
-
-          <img src={singleArticle.article_img_url} alt="picture of" />
+            </div>
 
           <div className="single-article-content">
             <p> By {singleArticle.author}</p>
@@ -62,15 +94,28 @@ const SingleArticlePage = () => {
 
       {/* comments */}
 
+    
       <div className="comments-section">
         <h3>Comments</h3>
 
         {comments.map((comment) => (
           <div className="single-comment" key={comment.comment_id}>
-            <p>By: {comment.author}</p>
+            <p>{comment.author} wrote on {formatCommentDate(comment.created_at)}</p>
             <p>{comment.body}</p>
-            <p>published: {formatCommentDate(comment.created_at)}</p>
+            <p></p>
             <p>votes: {comment.votes}</p>
+            {/* only comment author can delete the comment */}
+            {user && user.username === comment.author && (
+            <button className="delete-comnt-btn" 
+            onClick={() => {handleDelComment(comment.comment_id)}}>
+              Delete this comment
+              </button>
+            )}
+            {isDeleting && isDeleting.commentId === comment.comment_id && (
+              <p className="delete-cmnt">Your comment has been deleted </p>
+            )}
+
+            
           </div>
         ))}
       </div>

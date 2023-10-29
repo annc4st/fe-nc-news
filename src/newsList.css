@@ -33,7 +33,25 @@
     background: #09048b;
   }
   
+  .sort-options-container {
+    display: flex;
+    padding: 0.5em;
+    justify-content: center;
+    align-items: center;
+}
+.sort-options-container  div {
+  padding: 1em;
+}
+.sort-options-container select  {
+  border-radius: 20px;
+  padding: 0.5em;
+  background:  #eeeeb7c8;
+}
+.sort-options-container label {
+  padding-right: 0.5em;
+}
   
+  /*********/
   .news-list {
    display: flex;
     justify-content: flex-start;
@@ -65,4 +83,8 @@
   
   .article:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+  }
+
+  .vote-count {
+    position: relative;
   }

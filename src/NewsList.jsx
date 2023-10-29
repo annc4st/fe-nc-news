@@ -10,7 +10,11 @@ const NewsList = () => {
     const {topic} = useParams();
     const [selectedTopic, setSelectedTopic] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [sortOption, setSortOption] = useState("created_at");
+    const [sortOrder, setSortOrder] = useState("DESC")
     
+//fetching topics
     useEffect(() => {
         setIsLoading(true);
         getTopics().then((fetchedTopics) => {
@@ -19,18 +23,33 @@ const NewsList = () => {
         });
 
     }, []);
-
+//fetching articles
     useEffect(() => {
         setIsLoading(true);
-            getArticles(topic).then((fetchedArticles) => {
+            getArticles(topic, sortOption, sortOrder).then((fetchedArticles) => {
                 setIsLoading(false)
                 setArticles(fetchedArticles);
             })
-    }, [topic])
+            .catch (({data}) => {
+                setError({message:data.message, status: data.status})
+            })
+    }, [topic, sortOption, sortOrder])
 
     const handleTopicChange = (e) => {
         setSelectedTopic(e.target.value);
       };
+
+    const handleSortChange = (e) => {
+        setSortOption(e.target.value);  
+    };
+    const handleOrderChange = (e) => {
+        setSortOrder(e.target.value);
+    };
+
+
+    if (isLoading) return <p>Loading...</p>
+    if (error) return <p>No Results Found</p>;
+    // <Error status={error.status} message={error.message} />;
 
     return (
         <div className="news-container">
@@ -49,6 +68,25 @@ const NewsList = () => {
                     })}
                 </ul>
             </div>
+            <div className="sort-options-container">
+            <div className='select-sort-option'>
+                <label htmlFor="sort-options">Sort by: </label>
+                <select id="sort-select" onChange={handleSortChange} value = {sortOption}>
+                    <option value="author">Author</option>
+                    <option value="votes">Votes</option>
+                    <option value="created_at">Publish date</option>
+                </select>
+            </div>
+
+            <div className='sort-order'>
+                <label htmlFor="order-select">Order: </label>
+                <select id="order-select" onChange={handleOrderChange} value = {sortOrder}>
+                    <option value="ASC">Ascending</option>
+                    <option value="DESC">Descending</option>
+                </select>
+            </div>
+            </div>
+
             <div className="news-list">
                 {articles.map((article) => (
                 <NewsItem  key={article.article_id} article = {article} />

@@ -4,9 +4,10 @@
     padding: 12px 24px;
 }
 
-/* .single-article h2 {
+.single-article h2 {
+    color: #0d1c69c4;
 
-} */
+}
 h3 {
 padding-left: 24px;
 }
@@ -28,11 +29,10 @@ padding-left: 24px;
     padding: 12px 36px;
 }
 
-/* .comments-section {
+.comments-section {
     display: block;
-    margin: 8px;
-    padding: 12px 36px;
-}  */
+ 
+} 
 
  
 .single-comment {
@@ -48,15 +48,15 @@ padding-left: 24px;
 
 .post-comment {
   
-    display: block;
+    display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     margin: auto;
     text-align: center;
 }
-/* .post-comment h3{
-    
-} */
+.post-comment h3{
+    padding: 0;
+}
 
 .post-comment form {
     display: block;
@@ -67,12 +67,50 @@ padding-left: 24px;
 }
 .post-comment textarea {
     display: block;
-    /* width: 80%; */
+    width: 600px;
     margin-top: 20px;
     margin-bottom: 20px;
     background: rgb(236, 240, 240);
+    border-radius: 20px;
+    text-align: center;
 }
 .post-comment button {
     background: rgba(90, 201, 49, 0.813);
 }
+.voter-article {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.voting-positive {
+    width: 120px;
+    background: rgba(90, 201, 49, 0.813);
+    color: white;
+}
 
+.voting-negative {
+    width: 120px;
+    background: rgba(236, 64, 64, 0.813);
+    color: white;
+}
+.topic-label {
+    border-radius: 20px;
+    padding: 3px;
+    width: 80px;
+    text-align: center;
+    margin: 5px;;
+
+}
+.topic-label__cooking{
+    background-color: rgba(187, 187, 69, 0.813);
+}
+.topic-label__football{
+    background-color: rgba(90, 201, 49, 0.813);
+}
+.topic-label__coding {
+    background-color: #7177e5;
+}
+
+.delete-comnt-btn {
+    background: rgba(236, 64, 64, 0.813);
+    margin: 10px;
+}

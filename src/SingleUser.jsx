@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext} from 'react';
 import {getSingleUser} from './api'
 import { useParams } from 'react-router-dom';
 import {UserContext} from './contexts/UserContext';
+import './singleUser.css';
 
 
 const SingleUser = () => {
@@ -30,13 +31,16 @@ const SingleUser = () => {
         <section className="user-profile">
             {user? ( 
                 <>
+                    <p> {user.name}</p>
                     <img src={user.avatar_url} 
                     alt={`profile picture of ${user.username}`}/>
-                    <p>{user.username}</p>
-                    <p>{user.name}</p>
-                    <button onClick={handleLogin} disabled={user ? true : false}>
+                    <p>Username: {user.username}</p>
+                  
+                    <p>Status: {user ? 'Logged In' : 'Login'} </p>
+                    {/* {if user not logged in -> enable button to login} */}
+                    {/* <button onClick={handleLogin} disabled={user ? true : false}>
                                 {user ? 'Logged In' : 'Login'} 
-                    </button>
+                    </button> */}
                  </>
             ) : (
                 <p> Loading ... </p>

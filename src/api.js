@@ -4,12 +4,25 @@ const newsApi = axios.create ({
     baseURL : "https://nc-news-proj.onrender.com/api",
 })
 
-export const getArticles = (topic) => {
-    return newsApi.get(topic ? '/articles/?topic=' + topic : '/articles')
+export const getArticles = (topic, sortOption, sortOrder) => {
+    const params = {
+        sort_by: sortOption,
+        order: sortOrder,
+
+    };
+    
+    if (topic) {
+        params.topic = topic;
+    }
+    return newsApi.get('/articles', {params})
+    // return newsApi.get(topic ? '/articles/?topic=' + topic : '/articles',
+   
     .then((response) => {
         return response.data.articles;
     })
 }
+
+
 
 export const getSingleArticle = (article_id) => {
     return newsApi.get(`/articles/${article_id}`)
@@ -31,17 +44,6 @@ export const getTopics = () => {
         return response.data.topics;
     })
 }
-
-// export const getArticlesOnTopic = (topic) => {
-//     return newsApi.get('/articles', {
-//         params: { topic: topic}
-//     },
-//     )
-//     .then((response) => {
-//         return response.data.articles
-//     })
-// }
-
 
 export const formatCommentDate = (date) => {
     const formattedDate = date.replace('T', ' ').replace('Z', ' ').replace('.000', '')
@@ -77,5 +79,18 @@ export const postArticleComment = (newComment, article_id) => {
     return newsApi.post(`/articles/${article_id}/comments`, newComment)
     .then((response) => {
         return response.data.comments
+    })
+}
+
+export const deleteComment = (article_id, comment_id) => {
+    return newsApi.delete(`/articles/${article_id}/comments`, {
+        params: {comment_id},
+    }
+    )
+    .then((response) => {
+        console.log(`Comment ${comment_id} has been deleted successfully`)
+    })
+    .catch((error) => {
+        console.log('Error : ', error)
     })
 }

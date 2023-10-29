@@ -1,8 +1,5 @@
-import React from 'react';
-import {useState, useEffect} from 'react';
-import Picker from 'emoji-picker-react';
+import React, {useState} from 'react';
 import { updateVotes } from './api';
-import * as api from "./api";
 
 
 export const Voter = ({article_id, votes, setSingleArticle}) => {
@@ -36,9 +33,9 @@ export const Voter = ({article_id, votes, setSingleArticle}) => {
 
     return (
         <>
-        <p>Votes: {votes}</p>
+        <p>🧡 {votes}</p>
         {error && <p className="error">{error}</p>}
-        <button 
+        <button className='voting-positive'
         disabled={votesDiff=== 1}
             aria-label = "like"
             onClick={() => {
@@ -46,13 +43,13 @@ export const Voter = ({article_id, votes, setSingleArticle}) => {
             }}
         >Great </button>
      
-        <button 
+        <button className='voting-negative' 
         disabled={votesDiff === -1}
             aria-label = "dislike"
             onClick={() => {
                 handleVote(-1)
             }}
-            >Not So Great</button>
+            >Not Great</button>
         </>
     )
 
