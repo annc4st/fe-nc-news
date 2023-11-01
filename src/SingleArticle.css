@@ -114,3 +114,19 @@ padding-left: 24px;
     background: rgba(236, 64, 64, 0.813);
     margin: 10px;
 }
+
+.deleting-cmt {
+    display:flex;
+    align-items: center;
+    margin: auto;
+    font-size: 1.5em;
+    background: rgb(210, 109, 109);
+}
+
+.loading-p{
+    display:flex;
+    align-items: center;
+    margin: auto;
+    font-size: 1.5em;
+    background:rgb(244, 247, 244);
+}
