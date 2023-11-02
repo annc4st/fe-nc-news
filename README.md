@@ -1,5 +1,5 @@
-# React + Vite
-# Northcoders News
+# React + Vite Project
+## Northcoders News
 
 ### Description
 This project imitates news website. Users are able to read articles, post comments, vote 'like' or 'dislike' for articles and comments, post an article. In order to be able to interact with articles and comments, voting, users need to log in. This can be done by simply going to the users page and clicking on the available user.
@@ -7,10 +7,10 @@ This project imitates news website. Users are able to read articles, post commen
 The link to the project: 
 [annas-nc-news.netlify.app](https://annas-nc-news.netlify.app/)
 
-## API Usage
+### API Usage
 [API Documentation](https://nc-news-proj.onrender.com/api)
 
-## Installation 
+### Installation 
 To run this project locally, follow these steps:
 1. Clone the repository:
 > git clone https://github.com/annc4st/fe-nc-news
@@ -43,9 +43,9 @@ To run this project locally, follow these steps:
   }
   ```
 
-  ## Project Structure: 
+  ### Project Structure: 
   The project consists of a number of components:
-    > `src/ `- Contains the source code.
+> `src/ `- Contains the source code.
    
 
   App.jsx
@@ -67,9 +67,8 @@ To run this project locally, follow these steps:
 
     NotFound.jsx
 
-> `public/` - Public assets and HTML template.
 > `vite.config.js` - Vite configuration.
 
-### Acknowledgements
+### Acknowledgements:
 - **Axios**
 - **React**
