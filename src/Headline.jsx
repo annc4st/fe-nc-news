@@ -14,9 +14,7 @@ const Headline = () => {
     
                 {user !== null ? (
                     <button onClick={handleLogOut}>Logout</button>
-
                 ) : (
-
                     <Link to="/users">
                         <button>Login</button>
                     </Link>
