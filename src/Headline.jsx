@@ -11,7 +11,7 @@ const Headline = () => {
     return (
         <div className="headline">
             <p> Hello, {user && user.name ? user.name : 'Stranger' } !</p>
-            {/* <div> */}
+    
                 {user !== null ? (
                     <button onClick={handleLogOut}>Logout</button>
 
@@ -22,8 +22,6 @@ const Headline = () => {
                     </Link>
                  )
                 }
-                
-            {/* </div> */}
         </div>
     )
 }

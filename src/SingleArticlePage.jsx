@@ -111,7 +111,10 @@ const SingleArticlePage = () => {
             <p>{comment.comment_id}</p>
             <p>{comment.body}</p>
             <p></p>
-            <p>votes: {comment.votes}</p>
+           {comment.votes >= 0 ? (<p> ❤️️ {comment.votes}</p>)
+            : ( <p>💔 {comment.votes}</p>)
+          }
+            
 
             {/* only comment author can delete the comment */}
             {user && user.username === comment.author && (

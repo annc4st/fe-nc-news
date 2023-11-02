@@ -47,7 +47,7 @@ const NewsList = () => {
     };
 
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <div className="loading-p">loading...</div>;
     if (error) return <p>No Results Found</p>;
     // <Error status={error.status} message={error.message} />;
 

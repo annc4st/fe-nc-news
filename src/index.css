@@ -25,18 +25,15 @@ body {
   align-items: center;
 
 }
-.header {
-  display: block;
-  margin: 8px;
-  padding: 12px 24px;
-}
-.title {
-  font-size: 2em;
-}
+
 .headline {
-  display: block;
+  display: flex;
+  align-items: center;
   margin: 8px;
   padding: 12px 24px;
+}
+.headline button {
+  margin-left: 16px;
 }
 nav {
   display: block;
@@ -88,3 +85,60 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } 
+
+
+.not-found-page {
+  display: block;
+  margin: 8px;
+  padding: 12px 24px;
+}
+
+.homePage-container {
+  position: relative;
+  text-align: center;
+  display: block;
+  margin: 12px;
+  padding: 12px 12px;
+  justify-content: center;
+  align-items: center;
+  background-color:  rgb(244, 247, 244);
+}
+.homePage-container img {
+  width: 100%;
+  height: auto;
+}
+
+.centered {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(244, 247, 244, 0.832);
+  padding: 12px;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  display: block;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+}
+.header-img {
+  background-size:cover;
+  position: relative;
+  height: 250px;
+  width: 120%;
+  }
+.title {
+  font-size: 2em;
+}
+.centered-header {
+  position: absolute;
+  top: 45%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  padding: 12px 50px;
+  background: rgba(244, 247, 244, 0.832);
+}
