@@ -50,7 +50,7 @@
   padding-right: 0.5em;
 }
   
-  /*********/
+  /* List of articles */
   .news-list {
    display: flex;
     justify-content: flex-start;

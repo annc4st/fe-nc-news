@@ -20,10 +20,22 @@
   padding: 0;
 }
 
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} 
+
 body {
   display: flex;
   align-items: center;
-
 }
 
 .headline {
@@ -41,9 +53,6 @@ nav {
   padding: 12px 24px;
 }
 
-/* newslist import to newslist.css */
-/* SingleArticlePage.css */
-
 a {
   font-weight: 500;
   color: #0d1c69c4;
@@ -53,7 +62,6 @@ a:hover {
   color: #535bf2;
 } 
  
- 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -61,38 +69,21 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #1a1a1a3b;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} 
-
-
-.not-found-page {
-  display: block;
-  margin: 8px;
-  padding: 12px 24px;
-}
-
+/* HOMEPAGE */
 .homePage-container {
   position: relative;
   text-align: center;
@@ -103,10 +94,12 @@ button:focus-visible {
   justify-content: center;
   align-items: center;
   background-color:  rgb(244, 247, 244);
-}
-.homePage-container img {
+} 
+.homePage-image {
+  object-fit: cover;
+  position: relative;
+  height: 100%;
   width: 100%;
-  height: auto;
 }
 
 .centered {
@@ -125,11 +118,12 @@ button:focus-visible {
   padding: 12px 12px;
   justify-content: center;
   align-items: center;
+  height: 20rem;
 }
 .header-img {
-  background-size:cover;
+  object-fit: cover;
   position: relative;
-  height: 250px;
+  height: 100%;
   width: 100%;
   }
 .title {
@@ -137,9 +131,25 @@ button:focus-visible {
 }
 .centered-header {
   position: absolute;
-  top: 45%;
-  left: 40%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   padding: 12px 50px;
   background: rgba(244, 247, 244, 0.832);
+}
+
+/* Media query for smaller screens (e.g., mobile devices) */
+@media screen and (max-width: 768px) {
+  .header {
+    height: auto; 
+  }
+
+  .centered-header {
+    top: 40%; 
+  }
+}
+.not-found-page {
+  display: block;
+  margin: 8px;
+  padding: 12px 24px;
 }
